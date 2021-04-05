@@ -1,0 +1,22 @@
+> db.customer.find()
+{ "_id" : 1, "custid" : "a121", "amt" : 200, "stat" : "a" }
+{ "_id" : 2, "custid" : "a122", "amt" : 250, "stat" : "a" }
+{ "_id" : 3, "custid" : "a123", "amt" : 650, "stat" : "i" }
+{ "_id" : 4, "custid" : "a124", "amt" : 300, "stat" : "a" }
+{ "_id" : 5, "custid" : "a125", "amt" : 800, "stat" : "i" }
+{ "_id" : 6, "custid" : "a121", "amt" : 400, "stat" : "a" }
+{ "_id" : 7, "custid" : "a122", "amt" : 550, "stat" : "i" }
+
+
+> db.customer.aggregate([{$group:{_id:"$custid",max:{$sum:"$amt"}}}])
+{ "_id" : "a121", "max" : 600 }
+{ "_id" : "a122", "max" : 800 }
+{ "_id" : "a123", "max" : 650 }
+{ "_id" : "a124", "max" : 300 }
+{ "_id" : "a125", "max" : 800 }
+
+Max of amount
+> db.customer.aggregate([{$group:{_id:null,max:{$max:"$amt"}}}])
+{ "_id" : null, "max" : 800 }
+
+
