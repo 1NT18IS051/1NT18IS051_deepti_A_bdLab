@@ -1,0 +1,50 @@
+CREATING DATABSE 7 COLLECTIONS
+use company
+switched to db company
+> db.empDetails.drop()
+true
+> db.createCollection("empDetails")
+{ "ok" : 1 }
+
+SAVE()
+db.empDetails.save({_id:11,fname:"Yogesh",lname:"Nayak",age:26,email:"yjb@gmail.com",phone:"7897001111",exp:5})
+
+EXISTING DOCUMENT UPDATING
+db.empDetails.save({_id:2,fname:"Ramesh",lname:"Naik",age:27,email:"rhn@gmail.com",phone:"7897089111",exp:8})
+
+INSERT MANY
+db.empDetails.insert([{_id:1,fname:"Deepti",lname:"Bhandari",age:26,email:"dkb@gmail.com",phone:"9007001111",exp:5},{_id:2,fname:"jothsna",lname:"Reddy",age:25,email:"jrr@gmail.com",phone:"9055001111",exp:9},{_id:3,fname:"Keerti",lname:"vatsav",age:22,email:"kvb@gmail.com",phone:"9007007896",exp:4},{_id:4,fname:"Ganga",lname:"Suresh",age:20,email:"ghs@gmail.com",phone:"9003523111",exp:2},{_id:5,fname:"Swati",lname:"Sharanya",age:24,email:"sss@gmail.com",phone:"9480001111",exp:9},{_id:6,fname:"rahul",lname:"Kawlekar",age:26,email:"rsk@gmail.com",phone:"9007004616",exp:5},{_id:7,fname:"rohan",lname:"Keerthy",age:27,email:"rkk@gmail.com",phone:"9007003399",exp:9},{_id:8,fname:"Reshma",lname:"Bhandari",age:29,email:"rhb@gmail.com",phone:"9008901111",exp:7},{_id:9,fname:"Shruti",lname:"tiwari",age:26,email:"stt@gmail.com",phone:"9007991111",exp:4},{_id:10,fname:"kavya",lname:"satish",age:27,email:"ksgv@gmail.com",phone:"9007057501",exp:3}])
+
+LNAME IS NAYAK AND EXP IS 5 YEARS
+db.empDetails.find({$and:[{lname:"Nayak"},{exp:5}]})
+{ "_id" : 11, "fname" : "Yogesh", "lname" : "Nayak", "age" : 26, "email" : "yjb@gmail.com", "phone" : "7897001111", "exp" : 5 }
+
+db.empDetails.find({age:{$ne:20}})  //AGE NOT EQAUL TO 20
+{ "_id" : 1, "fname" : "Deepti", "lname" : "Bhandari", "age" : 26, "email" : "dkb@gmail.com", "phone" : "9007001111", "exp" : 5 }
+{ "_id" : 2, "fname" : "Ramesh", "lname" : "Naik", "age" : 27, "email" : "rhn@gmail.com", "phone" : "7897089111", "exp" : 8 }
+{ "_id" : 3, "fname" : "Keerti", "lname" : "vatsav", "age" : 22, "email" : "kvb@gmail.com", "phone" : "9007007896", "exp" : 4 }
+{ "_id" : 5, "fname" : "Swati", "lname" : "Sharanya", "age" : 24, "email" : "sss@gmail.com", "phone" : "9480001111", "exp" : 9 }
+{ "_id" : 6, "fname" : "rahul", "lname" : "Kawlekar", "age" : 26, "email" : "rsk@gmail.com", "phone" : "9007004616", "exp" : 5 }
+{ "_id" : 7, "fname" : "rohan", "lname" : "Keerthy", "age" : 27, "email" : "rkk@gmail.com", "phone" : "9007003399", "exp" : 9 }
+{ "_id" : 8, "fname" : "Reshma", "lname" : "Bhandari", "age" : 29, "email" : "rhb@gmail.com", "phone" : "9008901111", "exp" : 7 }
+{ "_id" : 9, "fname" : "Shruti", "lname" : "tiwari", "age" : 26, "email" : "stt@gmail.com", "phone" : "9007991111", "exp" : 4 }
+{ "_id" : 10, "fname" : "kavya", "lname" : "satish", "age" : 27, "email" : "ksgv@gmail.com", "phone" : "9007057501", "exp" : 3 }
+{ "_id" : 11, "fname" : "Yogesh", "lname" : "Nayak", "age" : 26, "email" : "yjb@gmail.com", "phone" : "7897001111", "exp" : 5 }
+
+ID NOT EAUL TO 1
+db.empDetails.find({_id:{$ne:1}})
+{ "_id" : 2, "fname" : "Ramesh", "lname" : "Naik", "age" : 27, "email" : "rhn@gmail.com", "phone" : "7897089111", "exp" : 8 }
+{ "_id" : 3, "fname" : "Keerti", "lname" : "vatsav", "age" : 22, "email" : "kvb@gmail.com", "phone" : "9007007896", "exp" : 4 }
+{ "_id" : 4, "fname" : "Ganga", "lname" : "Suresh", "age" : 20, "email" : "ghs@gmail.com", "phone" : "9003523111", "exp" : 2 }
+{ "_id" : 5, "fname" : "Swati", "lname" : "Sharanya", "age" : 24, "email" : "sss@gmail.com", "phone" : "9480001111", "exp" : 9 }
+{ "_id" : 6, "fname" : "rahul", "lname" : "Kawlekar", "age" : 26, "email" : "rsk@gmail.com", "phone" : "9007004616", "exp" : 5 }
+{ "_id" : 7, "fname" : "rohan", "lname" : "Keerthy", "age" : 27, "email" : "rkk@gmail.com", "phone" : "9007003399", "exp" : 9 }
+{ "_id" : 8, "fname" : "Reshma", "lname" : "Bhandari", "age" : 29, "email" : "rhb@gmail.com", "phone" : "9008901111", "exp" : 7 }
+{ "_id" : 9, "fname" : "Shruti", "lname" : "tiwari", "age" : 26, "email" : "stt@gmail.com", "phone" : "9007991111", "exp" : 4 }
+{ "_id" : 10, "fname" : "kavya", "lname" : "satish", "age" : 27, "email" : "ksgv@gmail.com", "phone" : "9007057501", "exp" : 3 }
+{ "_id" : 11, "fname" : "Yogesh", "lname" : "Nayak", "age" : 26, "email" : "yjb@gmail.com", "phone" : "7897001111", "exp" : 5 }
+
+AGE LESS THAN OR EQUAL TO 20
+db.empDetails.find({age:{$lte:20}})
+{ "_id" : 4, "fname" : "Ganga", "lname" : "Suresh", "age" : 20, "email" : "ghs@gmail.com", "phone" : "9003523111", "exp" : 2 }
+

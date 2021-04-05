@@ -1,0 +1,110 @@
+Displays all documents
+{
+ "_id":3,
+ "ename":"Kavya",
+ "age":27,
+ "email":"kvdy.@gmail.com",
+ "pno":914115567,
+ "exp":7
+}
+
+{
+  "_id":2,
+  "ename":"ramesh",
+  "age":25,
+  "email":"rms.@gmail.com",
+  "pno":9141144564,
+  "exp":6
+ }
+ 
+{
+  "_id":4,
+  "ename":"Jothsna",
+  "age":24,
+  "email":"jts@gmail.com",
+  "pno":9141142345,
+  "exp":5
+}
+
+1)Age is not greater than 25
+> {age:{$not:{$gt:25}}}
+{
+  "_id":2,
+  "ename":"ramesh",
+  "age":25,
+  "email":"rms.@gmail.com",
+  \"pno":9141144564,
+  "exp":6
+ }
+{
+  "_id":4,
+  "ename":"Jothsna",
+  "age":24,
+  "email":"jts@gmail.com",
+  "pno":9141142345,
+  "exp":5
+ }
+
+2)experience is not equal to 5
+> {exp:{$ne:5}}
+{ 
+  "_id":2,
+  "ename":"ramesh",
+  "age":25,
+  "email":"rms.@gmail.com",
+  "pno":9141144564,
+  "exp":6
+ }
+{
+  "_id":3,
+  "ename":"Kavya",
+  "age":27,
+  "email":"kvdy.@gmail.com",
+  "pno":914115567,
+  "exp":7
+ }
+  
+  
+
+3)name is kavya and experience is 7 years
+> {$and:[{ename:"Kavya"},{exp:7}]}
+{
+  "_id":3,
+  "ename":"Kavya",
+  "age":27,
+  "email":"kvdy.@gmail.com",
+  "pno":914115567,
+  "exp":7
+ }
+
+4)id is 2
+> {_id:2}
+{
+  "_id":2,
+  "ename":"ramesh",
+  "age":25,
+  "email":"rms.@gmail.com",
+  "pno":9141144564,
+  "exp":6
+ }
+
+5)age is either 24 or 25
+> {age:{$in:[24,25]}} OR > {$or:[{age:24},{age:25}]}
+{
+  "_id":2,
+  "ename":"ramesh",
+  "age":25,
+  "email":"rms.@gmail.com",
+  "pno":9141144564,
+  "exp":6
+ }
+ 
+{
+  "_id":4,
+  "ename":"Jothsna",
+  "age":24,
+  "email":"jts@gmail.com",
+  "pno":9141142345,
+  "exp":5
+  }
+
