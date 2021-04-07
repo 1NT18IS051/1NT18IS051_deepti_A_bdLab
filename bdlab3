@@ -16,8 +16,6 @@ Customers with active status
 { "_id" : 4, "custid" : "a124", "amt" : 300, "stat" : "a" }
 { "_id" : 6, "custid" : "a121", "amt" : 400, "stat" : "a" }
 
-
-
 > db.customer.aggregate([{$group:{_id:"$custid",max:{$sum:"$amt"}}}])
 { "_id" : "a121", "max" : 600 }
 { "_id" : "a122", "max" : 800 }
