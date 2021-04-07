@@ -9,6 +9,14 @@
 { "_id" : 6, "custid" : "a121", "amt" : 400, "stat" : "a" }
 { "_id" : 7, "custid" : "a122", "amt" : 550, "stat" : "i" }
 
+Customers with active status
+>db.customer.find({status:"a"}).pretty()
+{ "_id" : 1, "custid" : "a121", "amt" : 200, "stat" : "a" }
+{ "_id" : 2, "custid" : "a122", "amt" : 250, "stat" : "a" }
+{ "_id" : 4, "custid" : "a124", "amt" : 300, "stat" : "a" }
+{ "_id" : 6, "custid" : "a121", "amt" : 400, "stat" : "a" }
+
+
 
 > db.customer.aggregate([{$group:{_id:"$custid",max:{$sum:"$amt"}}}])
 { "_id" : "a121", "max" : 600 }
