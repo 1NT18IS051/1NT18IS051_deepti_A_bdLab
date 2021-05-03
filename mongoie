@@ -1,0 +1,44 @@
+Mongo import :--
+$ mongoimport --type csv -d telecom -c tusers --headerline --drop /home/hdoop/Downloads/telecom_users.csv
+2021-05-03T21:40:58.148+0530	connected to: localhost
+2021-05-03T21:40:58.152+0530	dropping: telecom.tusers
+2021-05-03T21:40:58.933+0530	imported 5986 documents
+
+>use telecom
+switched to db telecom
+> db.tusers.find()
+{ "_id" : ObjectId("60902092daa060b0648b4fb4"), "" : 1869, "customerID" : "7010-BRBUU", "gender" : "Male", "SeniorCitizen" : 0, "Partner" : "Yes", "Dependents" : "Yes", "tenure" : 72, "PhoneService" : "Yes", "MultipleLines" : "Yes", "InternetService" : "No", "OnlineSecurity" : "No internet service", "OnlineBackup" : "No internet service", "DeviceProtection" : "No internet service", "TechSupport" : "No internet service", "StreamingTV" : "No internet service", "StreamingMovies" : "No internet service", "Contract" : "Two year", "PaperlessBilling" : "No", "PaymentMethod" : "Credit card (automatic)", "MonthlyCharges" : 24.1, "TotalCharges" : 1734.65, "Churn" : "No" }
+.......
+
+> db.tusers.find({"tenure":{$exists:true}})
+{ "_id" : ObjectId("60902092daa060b0648b4fb4"), "" : 1869, "customerID" : "7010-BRBUU", "gender" : "Male", "SeniorCitizen" : 0, "Partner" : "Yes", "Dependents" : "Yes", "tenure" : 72, "PhoneService" : "Yes", "MultipleLines" : "Yes", "InternetService" : "No", "OnlineSecurity" : "No internet service", "OnlineBackup" : "No internet service", "DeviceProtection" : "No internet service", "TechSupport" : "No internet service", "StreamingTV" : "No internet service", "StreamingMovies" : "No internet service", "Contract" : "Two year", "PaperlessBilling" : "No", "PaymentMethod" : "Credit card (automatic)", "MonthlyCharges" : 24.1, "TotalCharges" : 1734.65, "Churn" : "No" }
+{ "_id" : ObjectId("60902092daa060b0648b4fb5"), "" : 4528, "customerID" : "9688-YGXVR", "gender" : "Female", "SeniorCitizen" : 0, "Partner" : "No", "Dependents" : "No", "tenure" : 44, "PhoneService" : "Yes", "MultipleLines" : "No", "InternetService" : "Fiber optic", "OnlineSecurity" : "No", "OnlineBackup" : "Yes", "DeviceProtection" : "Yes", "TechSupport" : "No", "StreamingTV" : "Yes", "StreamingMovies" : "No", "Contract" : "Month-to-month", "PaperlessBilling" : "Yes", "PaymentMethod" : "Credit card (automatic)", "MonthlyCharges" : 88.15, "TotalCharges" : 3973.2, "Churn" : "No" }
+......Type "it" for more
+
+
+> db.tusers.find({"Churn":{$type:1}})
+> db.tusers.find({"TotalCharges":{$type:1}})
+{ "_id" : ObjectId("60902092daa060b0648b4fb4"), "" : 1869, "customerID" : "7010-BRBUU", "gender" : "Male", "SeniorCitizen" : 0, "Partner" : "Yes", "Dependents" : "Yes", "tenure" : 72, "PhoneService" : "Yes", "MultipleLines" : "Yes", "InternetService" : "No", "OnlineSecurity" : "No internet service", "OnlineBackup" : "No internet service", "DeviceProtection" : "No internet service", "TechSupport" : "No internet service", "StreamingTV" : "No internet service", "StreamingMovies" : "No internet service", "Contract" : "Two year", "PaperlessBilling" : "No", "PaymentMethod" : "Credit card (automatic)", "MonthlyCharges" : 24.1, "TotalCharges" : 1734.65, "Churn" : "No" }
+{ "_id" : ObjectId("60902092daa060b0648b4fb5"), "" : 4528, "customerID" : "9688-YGXVR", "gender" : "Female", "SeniorCitizen" : 0, "Partner" : "No", "Dependents" : "No", "tenure" : 44, "PhoneService" : "Yes", "MultipleLines" : "No", "InternetService" : "Fiber optic", "OnlineSecurity" : "No", "OnlineBackup" : "Yes", "DeviceProtection" : "Yes", "TechSupport" : "No", "StreamingTV" : "Yes", "StreamingMovies" : "No", "Contract" : "Month-to-month", "PaperlessBilling" : "Yes", "PaymentMethod" : "Credit card (automatic)", "MonthlyCharges" : 88.15, "TotalCharges" : 3973.2, "Churn" : "No" }
+......
+Type "it" for more
+
+
+> db.tusers.find({"gender":{$regex:"^F"}})
+{ "_id" : ObjectId("60902092daa060b0648b4fb5"), "" : 4528, "customerID" : "9688-YGXVR", "gender" : "Female", "SeniorCitizen" : 0, "Partner" : "No", "Dependents" : "No", "tenure" : 44, "PhoneService" : "Yes", "MultipleLines" : "No", "InternetService" : "Fiber optic", "OnlineSecurity" : "No", "OnlineBackup" : "Yes", "DeviceProtection" : "Yes", "TechSupport" : "No", "StreamingTV" : "Yes", "StreamingMovies" : "No", "Contract" : "Month-to-month", "PaperlessBilling" : "Yes", "PaymentMethod" : "Credit card (automatic)", "MonthlyCharges" : 88.15, "TotalCharges" : 3973.2, "Churn" : "No" }
+{ "_id" : ObjectId("60902092daa060b0648b4fb6"), "" : 6344, "customerID" : "9286-DOJGF", "gender" : "Female", "SeniorCitizen" : 1, "Partner" : "Yes", "Dependents" : "No", "tenure" : 38, "PhoneService" : "Yes", "MultipleLines" : "Yes", "InternetService" : "Fiber optic", "OnlineSecurity" : "No", "OnlineBackup" : "No", "DeviceProtection" : "No", "TechSupport" : "No", "StreamingTV" : "No", "StreamingMovies" : "No", "Contract" : "Month-to-month", "PaperlessBilling" : "Yes", "PaymentMethod" : "Bank transfer (automatic)", "MonthlyCharges" : 74.95, "TotalCharges" : 2869.85, "Churn" : "Yes" }
+.....
+Type "it" for more
+
+Mongoexport:--
+
+$ mongoexport --collection=tusers --db telecom --out=/home/hdoop/Downloads/teleusers.csv
+2021-05-03T22:13:15.361+0530	connected to: localhost
+2021-05-03T22:13:16.368+0530	[........................]  telecom.tusers  0/5986  (0.0%)
+2021-05-03T22:13:16.744+0530	[########################]  telecom.tusers  5986/5986  (100.0%)
+2021-05-03T22:13:16.744+0530	exported 5986 records
+
+
+
+
+
