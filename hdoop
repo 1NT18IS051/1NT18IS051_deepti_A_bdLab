@@ -1,0 +1,62 @@
+Making a directory
+$ hadoop fs -mkdir deepti
+
+Empty files
+$ hadoop fs -touchz file1.txt
+$ hadoop fs -touchz file2.txt
+$ hadoop fs -ls
+Found 3 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-09 00:22 deepti
+-rw-r--r--   1 hdoop supergroup          0 2021-05-09 00:25 file1.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-09 00:26 file2.txt
+
+Creating a directory and moving it into another
+$ hadoop fs -mkdir 1nt18is051
+$ hadoop fs -mv 1nt18is051 deepti
+$ hadoop fs -ls deepti/
+Found 1 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-09 00:29 deepti/1nt18is051
+
+Create a file name-usn.txt and move to usn
+$ gedit deepti_051.txt
+$ hadoop fs -copyFromLocal deepti_051.txt deepti/1nt18is051
+2021-05-09 00:59:49,309 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+$ hadoop fs -ls deepti/1nt18is051
+Found 1 items
+-rw-r--r--   1 hdoop supergroup         43 2021-05-09 00:59 deepti/1nt18is051/deepti_051.txt
+
+copy tolocal
+ hadoop fs -copyToLocal file1.txt
+$ hadoop fs -copyToLocal file2.txt
+
+mv command 
+$ hadoop fs -mv deepti/1nt18is051/deepti_051.txt deepti/
+$ hadoop fs -ls deepti/
+Found 2 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-09 01:14 deepti/1nt18is051
+-rw-r--r--   1 hdoop supergroup         43 2021-05-09 00:59 deepti/deepti_051.txt
+
+
+Total size of directory
+ $hadoop fs -dus deepti/
+dus: DEPRECATED: Please use 'du -s' instead.
+43  43  deepti
+
+Size of each file in a directory
+$ hadoop fs -du deepti/
+0   0   deepti/1nt18is051
+43  43  deepti/deepti_051.txt
+
+Stat command
+$ hadoop fs -stat deepti/
+2021-05-08 19:44:14
+$ hadoop fs -stat deepti/1nt18is051/
+2021-05-08 19:44:14
+
+Append file
+$ hadoop fs -appendToFile deepti_051.txt file1.txt new.txt
+$ hadoop fs -cat new.txt
+Syntax to list ls command is hadoop fs -ls
+
+
+
