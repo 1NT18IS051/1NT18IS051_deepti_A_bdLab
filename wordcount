@@ -1,0 +1,35 @@
+$ gedit wordcount2.txt
+
+$ hadoop fs -put wordcount2.txt wordcount2.txt
+$ hadoop fs -cat wordcount2.txt
+hi hello 
+how are hi
+are you
+
+$ hadoop jar prog.jar wordcount.WordCount2 wordcount2.txt progOp
+
+$ hadoop fs -ls
+Found 8 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-09 01:14 deepti
+-rw-r--r--   1 hdoop supergroup          0 2021-05-09 00:25 file1.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-09 00:26 file2.txt
+-rw-r--r--   1 hdoop supergroup         43 2021-05-09 01:34 new.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-19 09:30 prog3output
+drwxr-xr-x   - hdoop supergroup          0 2021-05-20 22:21 progOp
+-rw-r--r--   1 hdoop supergroup         40 2021-05-16 19:13 wordcount.txt
+-rw-r--r--   1 hdoop supergroup         29 2021-05-20 21:47 wordcount2.txt
+
+$ hadoop fs -ls progOp/
+Found 2 items
+-rw-r--r--   1 hdoop supergroup          0 2021-05-20 22:08 progOp/_SUCCESS
+-rw-r--r--   1 hdoop supergroup         48 2021-05-20 22:08 progOp/part-r-00000
+
+
+$ hadoop fs -cat progOp/part-r-00000
+are	2
+hello	1
+hi	2
+how	1
+you	1
+
+
