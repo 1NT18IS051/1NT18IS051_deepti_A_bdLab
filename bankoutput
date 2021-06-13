@@ -1,0 +1,14 @@
+hdoop@deepti-VirtualBox:~$ hadoop jar bank.jar bank.TransactionDriver /sales_withoutHeader.csv output2
+
+hdoop@deepti-VirtualBox:~$ hadoop fs -ls output2
+Found 2 items
+-rw-r--r--   1 hdoop supergroup          0 2021-06-08 22:29 output2/_SUCCESS
+-rw-r--r--   1 hdoop supergroup         37 2021-06-08 22:29 output2/part-00000
+
+hdoop@deepti-VirtualBox:~$ hadoop fs -cat output2/part-00000
+2021-06-08 22:31:26,152 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+Disha	1
+Mahesh	3
+Prashanth	2
+Ramya	1
+
